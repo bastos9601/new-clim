@@ -231,7 +231,7 @@ npx expo publish
 
 ### Optimizaciones Implementadas
 - **Lazy loading** de componentes pesados
-- **Memoización** de cálculos costosos
+- **Memoización** de cálculos costosos hola cmoamsdmas
 - **Debouncing** en búsquedas
 - **Caché inteligente** de datos de API
 
