@@ -1,4 +1,4 @@
-//pronostico para 10 dias principal
+//pronostico para 10 dias principal tercera tarjeta
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';

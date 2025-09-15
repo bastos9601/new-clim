@@ -1,4 +1,4 @@
-//pronostico por hora
+//pronostico por hora segunda tarjeta
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { WeatherData } from '@/types/weather';

@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ScrollView, RefreshControl, Alert, StatusBar, TouchableOpacity, Text } from 'react-native';
-import { useRouter } from 'expo-router';
-import { WeatherData, LocationData } from '@/types/weather';
-import { WeatherService } from '@/services/weatherService';
-import { BackgroundService } from '@/services/backgroundService';
-import { WeatherHeader } from '@/components/WeatherHeader';
-import { HourlyForecast } from '@/components/HourlyForecast';
+import { CitySearchBar } from '@/components/CitySearchBar';
 import { DailyForecast } from '@/components/DailyForecast';
 import { DynamicBackground } from '@/components/DynamicBackground';
+import { HourlyForecast } from '@/components/HourlyForecast';
+import { WeatherHeader } from '@/components/WeatherHeader';
+import { BackgroundService } from '@/services/backgroundService';
+import { WeatherService } from '@/services/weatherService';
+import { LocationData, WeatherData } from '@/types/weather';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { Alert, RefreshControl, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -51,6 +52,29 @@ export default function HomeScreen() {
     loadWeatherData();
   };
 
+  // Función para manejar la selección de una nueva ciudad
+  const handleCitySelect = async (newLocation: LocationData, newCityName: string) => {
+    try {
+      setLoading(true);
+      setLocation(newLocation);
+      setCityName(newCityName);
+      
+      // Obtener datos del clima para la nueva ubicación
+      const weather = await WeatherService.getWeatherData(newLocation);
+      setWeatherData(weather);
+      
+    } catch (error) {
+      console.error('Error cargando datos del clima para la nueva ciudad:', error);
+      Alert.alert(
+        'Error',
+        'No se pudieron cargar los datos del clima para la ciudad seleccionada.',
+        [{ text: 'OK' }]
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   useEffect(() => {
     loadWeatherData();
@@ -91,6 +115,10 @@ export default function HomeScreen() {
           />
         }
       >
+        <CitySearchBar 
+          currentCity={cityName} 
+          onCitySelect={handleCitySelect} 
+        />
         <WeatherHeader weatherData={weatherData} cityName={cityName} />
         <HourlyForecast weatherData={weatherData} />
         <DailyForecast weatherData={weatherData} />

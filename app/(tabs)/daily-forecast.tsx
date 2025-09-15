@@ -1,4 +1,4 @@
-//pronostico para 10 dias
+//pronostico para 10 dias segunda pantalla
 import React, { useState, useEffect } from 'react';
 import { 
   View, 
