@@ -1,3 +1,4 @@
+//pronostico para 10 dias
 import React, { useState, useEffect } from 'react';
 import { 
   View, 
@@ -307,7 +308,7 @@ export default function DailyForecastScreen() {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          {/* 10-Day Forecast Carousel */}
+          {/* 10-Day Forecast  Carousel */}
           <View style={styles.forecastSection}>
             <ScrollView 
               horizontal 
