@@ -1,3 +1,4 @@
+//buscar ciudad en el mapa y mostrar las ciudades que coincidan con la búsqueda
 import { LocationData } from '@/types/weather';
 import React, { useState } from 'react';
 import {
@@ -224,6 +225,8 @@ const styles = StyleSheet.create({
   container: {
     position: 'relative',
     zIndex: 1000,
+    marginTop: 50,
+    backgroundColor: 'transparent',
   },
   searchBar: {
     flexDirection: 'row',
@@ -232,10 +235,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     paddingHorizontal: 15,
     paddingVertical: 12,
-    marginHorizontal: 20,
-    marginTop: 10,
+    marginHorizontal: 10,
+    marginBottom: 10,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
+    zIndex: 2,
+    position: 'relative',
   },
   locationIcon: {
     marginRight: 10,
@@ -276,6 +281,7 @@ const styles = StyleSheet.create({
     maxHeight: 200,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
+    zIndex: 3,
   },
   resultsList: {
     maxHeight: 200,
